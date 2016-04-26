@@ -5,6 +5,33 @@ class Sale < ActiveRecord::Base
   validates :author_username, uniqueness: { scope: :purchase_uuid }
 
   class << Sale
+    def sum_by_date
+      sql = <<-SQL
+WITH jst_sales AS (
+    select *,
+      date_purchased + INTERVAL '9 hours' AS jst_date_purchased
+    from sales
+),
+  sum_by_date AS (
+      select to_char(jst_date_purchased, 'YYYY/MM/DD') as purchased_on,
+        sum(author_royalties) as royalties
+      from jst_sales
+      GROUP BY purchased_on
+)
+SELECT *
+,sum(royalties) over( order by purchased_on ) AS cum_royalties
+FROM sum_by_date
+      SQL
+      records = find_by_sql(sql)
+      records.map do |record|
+        [
+            record['purchased_on'],
+            record['royalties'].to_f,
+            record['cum_royalties'].to_f
+        ]
+      end
+    end
+
     def save_data_from_leanpub(slug, load_until: 1.week.ago)
       page = 1
       go_next = true
