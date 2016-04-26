@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Sale, type: :model do
-  describe '::create_from_json_text!' do
+  describe '::save_records_from_hash_array!' do
     let(:json_text) do
       <<-'JSON'
+[
 {
    "cause_royalty_percentage":"0.0",
    "author_royalty_percentage":"5.0",
@@ -22,10 +23,14 @@ RSpec.describe Sale, type: :model do
    "invoice_id":"DimXToR5rhc2z_g8A34LM",
    "date_purchased":"2016-04-21T15:58:45.000Z"
 }
+]
       JSON
     end
+
     it 'creates record' do
-      sale = Sale.create_from_json_text!(json_text)
+      sales = Sale.save_records_from_hash_array!(JSON.parse(json_text))
+      expect(sales.size).to eq 1
+      sale = sales.first
       expect(sale).to be_persisted
       expect(sale).to have_attributes(
                           cause_royalty_percentage: BigDecimal('0.0'),
