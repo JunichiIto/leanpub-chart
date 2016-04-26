@@ -14,6 +14,7 @@ WITH jst_sales AS (
 ),
   sum_by_date AS (
       select to_char(jst_date_purchased, 'YYYY/MM/DD') as purchased_on,
+        count(DISTINCT purchase_uuid) as purchase_count,
         sum(author_royalties) as royalties
       from jst_sales
       GROUP BY purchased_on
@@ -24,11 +25,12 @@ FROM sum_by_date
       SQL
       records = find_by_sql(sql)
       records.map do |record|
-        [
-            record['purchased_on'],
-            record['royalties'].to_f,
-            record['cum_royalties'].to_f
-        ]
+        {
+            purchased_on: record['purchased_on'],
+            purchase_count: record['purchase_count'],
+            royalties: record['royalties'].to_f,
+            cum_royalties: record['cum_royalties'].to_f
+        }
       end
     end
 

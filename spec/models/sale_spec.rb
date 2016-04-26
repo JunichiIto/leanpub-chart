@@ -52,6 +52,17 @@ RSpec.describe Sale, type: :model do
       # JSTとして扱われること
       time_text = I18n.l sale.date_purchased
       expect(time_text).to eq '2016/04/22 00:58:45'
+
+      # ついでにレポートもテスト
+      rows = Sale.sum_by_date
+      expect(rows.size).to eq 1
+      row = rows.first
+      expect(row).to eq({
+          purchased_on: '2016/04/22',
+          purchase_count: 1,
+          royalties: 1.5,
+          cum_royalties: 1.5
+                        })
     end
   end
 
