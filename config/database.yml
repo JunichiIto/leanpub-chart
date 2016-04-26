@@ -49,13 +49,3 @@ test:
   username: leanpub-chart
   password:
   template: template0
-
-production:
-  adapter:  postgresql
-  host:     localhost
-  encoding: unicode
-  database: leanpub-chart_production
-  pool:     5
-  username: leanpub-chart
-  password:
-  template: template0
