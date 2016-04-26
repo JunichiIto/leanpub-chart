@@ -54,4 +54,26 @@ RSpec.describe Sale, type: :model do
       expect(time_text).to eq '2016/04/22 00:58:45'
     end
   end
+
+  describe '::filter_by_date_purchased' do
+    let(:load_until) { '2016/04/25 00:00'.in_time_zone }
+    it 'filters and returns go next or not' do
+      data = [
+          { 'date_purchased' => '2016-04-26T16:00:00.000Z' }, # 04/27 01:00am(JST)
+          { 'date_purchased' => '2016-04-25T17:00:00.000Z' }, # 04/26 02:00am(JST)
+      ]
+      filtered_data, go_next = Sale.filter_by_date_purchased(data, load_until)
+      expect(filtered_data.size).to eq 2
+      expect(go_next).to be_truthy
+
+      data = [
+          { 'date_purchased' => '2016-04-24T15:00:00.000Z' }, # 04/25 00:00am(JST)
+          { 'date_purchased' => '2016-04-24T14:59:59.000Z' }, # 04/24 11:59pm(JST)
+      ]
+      filtered_data, go_next = Sale.filter_by_date_purchased(data, load_until)
+      expect(filtered_data.size).to eq 1
+      expect(filtered_data.first).to eq({ 'date_purchased' => '2016-04-24T15:00:00.000Z' })
+      expect(go_next).to be_falsey
+    end
+  end
 end
