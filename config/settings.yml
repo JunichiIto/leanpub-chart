@@ -1,1 +1,3 @@
+target_slug: 'slug'
+load_until: 'yyyy-mm-dd'
 api_key: 'your key'
