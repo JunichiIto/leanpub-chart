@@ -22,16 +22,9 @@ WITH jst_sales AS (
 SELECT *
 ,sum(royalties) over( order by purchased_on ) AS cum_royalties
 FROM sum_by_date
+ORDER BY purchased_on DESC
       SQL
-      records = find_by_sql(sql)
-      records.map do |record|
-        {
-            purchased_on: record['purchased_on'],
-            purchase_count: record['purchase_count'],
-            royalties: record['royalties'].to_f,
-            cum_royalties: record['cum_royalties'].to_f
-        }
-      end
+      find_by_sql(sql)
     end
 
     def save_data_from_leanpub(slug, load_until: 1.week.ago)
