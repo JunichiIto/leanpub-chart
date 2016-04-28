@@ -1,0 +1,3 @@
+target_slug: "<%= ENV['TARGET_SLUG'] %>"
+load_until: "<%= ENV['LOAD_UNTIL'] %>"
+api_key: "<%= ENV['API_KEY'] %>"
