@@ -30,22 +30,23 @@ $(function() {
     return y + '/' + m + '/' + d;
   }
 
-  $.plot("#placeholder", [{
+  var data = [{
     label: '購入数',
     data: purchaseCount,
-    bars: { show: true },
+    bars: {show: true},
     yaxis: 2
   }, {
     label: '累計額',
     data: cumRoyalties,
-    lines: { show: true },
-    points: { show: true }
+    lines: {show: true},
+    points: {show: true}
   }, {
     label: '目標額',
     data: goalData,
-    lines: { show: true }
-  }, {
-  }], {
+    lines: {show: true}
+  }];
+
+  var options = {
     xaxes: [ { mode: 'time' } ],
     yaxes: [ {
       alignTicksWithAxis: 1,
@@ -57,7 +58,9 @@ $(function() {
     grid: {
       hoverable: true
     },
-  });
+  };
+
+  $.plot("#placeholder", data, options);
 
   $("<div id='tooltip'></div>").css({
     position: "absolute",
