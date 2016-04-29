@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  chart:
+    purchase_count: 'Purchase count'
+    cum_royalties: 'Cum royalties'
+    royalty_goal: 'Royalty goal'
+    purchase_unit: 'Copies'

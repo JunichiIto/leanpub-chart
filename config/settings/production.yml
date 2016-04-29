@@ -1,3 +1,5 @@
 target_slug: "<%= ENV['TARGET_SLUG'] %>"
-load_until: "<%= ENV['LOAD_UNTIL'] %>"
+date_from: "<%= ENV['DATE_FROM'] %>"
+date_to: "<%= ENV['DATE_TO'] %>"
+royalty_goal: <%= ENV['ROYALTY_GOAL'] %>
 api_key: "<%= ENV['API_KEY'] %>"
