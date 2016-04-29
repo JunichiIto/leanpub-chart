@@ -58,6 +58,9 @@ $(function() {
     grid: {
       hoverable: true
     },
+    series: {
+      bars: { lineWidth: 5 }
+    }
   };
 
   $.plot("#placeholder", data, options);

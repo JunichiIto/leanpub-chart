@@ -1,8 +1,8 @@
 module ChartHelper
   def goal_data
     goal = 500
-    from = '2016-04-25'.in_time_zone
-    to = '2016-05-31'.in_time_zone
+    from = '2016-04-24'.in_time_zone
+    to = '2016-06-01'.in_time_zone
     data = []
     current = from
     while current <= to
