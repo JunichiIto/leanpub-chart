@@ -13,13 +13,17 @@ $(function() {
     return v.toFixed(axis.tickDecimals) + $('#placeholder').data().purchaseUnit;
   }
 
+  function dateFormatter(v, axis) {
+    return dateFormat(toDate(v), true);
+  }
+
   function toDate(sec) {
     var d = new Date();
     d.setTime(sec);
     return d;
   }
 
-  function dateFormat(date) {
+  function dateFormat(date, withoutYear) {
     var y = date.getFullYear();
     var m = date.getMonth() + 1;
     var d = date.getDate();
@@ -31,7 +35,11 @@ $(function() {
       d = '0' + d;
     }
 
-    return y + '/' + m + '/' + d;
+    if (withoutYear) {
+      return  m + '/' + d;
+    } else {
+      return y + '/' + m + '/' + d;
+    }
   }
 
   var data = [{
@@ -51,7 +59,7 @@ $(function() {
   }];
 
   var options = {
-    xaxes: [ { mode: 'time' } ],
+    xaxes: [ { mode: 'time', tickFormatter: dateFormatter } ],
     yaxes: [ {
       alignTicksWithAxis: 1,
       position: 'right',
