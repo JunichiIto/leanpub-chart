@@ -9,6 +9,27 @@ $(function() {
     return '$' + v.toFixed(axis.tickDecimals);
   }
 
+  function toDate(sec) {
+    var d = new Date();
+    d.setTime(sec);
+    return d;
+  }
+
+  function dateFormat(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+
+    if (m < 10) {
+      m = '0' + m;
+    }
+    if (d < 10) {
+      d = '0' + d;
+    }
+
+    return y + '/' + m + '/' + d;
+  }
+
   $.plot("#placeholder", [{
     label: '購入数',
     data: purchaseCount,
@@ -52,7 +73,8 @@ $(function() {
       var x = item.datapoint[0].toFixed(2),
         y = item.datapoint[1].toFixed(2);
 
-      $("#tooltip").html(y)
+      var text = dateFormat(toDate(x)) + " : $" + y
+      $("#tooltip").html(text)
         .css({top: item.pageY+5, left: item.pageX+5})
         .fadeIn(200);
     } else {
