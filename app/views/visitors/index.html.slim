@@ -8,7 +8,7 @@ h1 Sales sum by date
       | Last update
       = l Sale.last.created_at
 
-  #placeholder(data = {goal_data: goal_data, cum_royalties: cum_royalties_data(@sales), purchase_count: purchase_count_data(@sales)})
+  #placeholder(data = {goal_data: goal_data, cum_royalties: cum_royalties_data(@sales), purchase_count: purchase_count_data(@sales), purchase_count_label: t('chart.purchase_count'), cum_royalties_label: t('chart.cum_royalties'), royalty_goal_label: t('chart.royalty_goal'), purchase_unit: t('chart.purchase_unit') })
 
   table.table.table-bordered
     thead

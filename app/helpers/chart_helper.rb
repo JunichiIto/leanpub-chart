@@ -1,8 +1,8 @@
 module ChartHelper
   def goal_data
-    goal = 500
-    from = '2016-04-24'.in_time_zone
-    to = '2016-06-01'.in_time_zone
+    goal = Settings.royalty_goal.to_f
+    from = Settings.date_from.in_time_zone.ago(1.day)
+    to = Settings.date_to.in_time_zone.since(1.day)
     data = []
     current = from
     while current <= to

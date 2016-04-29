@@ -1,5 +1,10 @@
 ---
 ja:
+  chart:
+    purchase_count: '購入数'
+    cum_royalties: '累計額'
+    royalty_goal: '目標額'
+    purchase_unit: '冊'
   activerecord:
     errors:
       messages:

@@ -10,7 +10,7 @@ $(function() {
   }
 
   function countFormatter(v, axis) {
-    return v.toFixed(axis.tickDecimals) + '冊';
+    return v.toFixed(axis.tickDecimals) + $('#placeholder').data().purchaseUnit;
   }
 
   function toDate(sec) {
@@ -35,17 +35,17 @@ $(function() {
   }
 
   var data = [{
-    label: '購入数',
+    label: $('#placeholder').data().purchaseCountLabel,
     data: purchaseCount,
     bars: {show: true, barWidth: 20000000, align: 'center'},
     yaxis: 2
   }, {
-    label: '累計額',
+    label: $('#placeholder').data().cumRoyaltiesLabel,
     data: cumRoyalties,
     lines: {show: true, lineWidth: 5},
     points: {show: true}
   }, {
-    label: '目標額',
+    label: $('#placeholder').data().royaltyGoalLabel,
     data: goalData,
     lines: {show: true}
   }];
@@ -82,7 +82,7 @@ $(function() {
       var text = null;
       if (item.seriesIndex == 0) {
         var y = item.datapoint[1].toFixed(0);
-        text = dateFormat(toDate(x)) + " : " + y + "冊";
+        text = dateFormat(toDate(x)) + " : " + y + $('#placeholder').data().purchaseUnit;
       } else if (item.seriesIndex == 1) {
         var y = item.datapoint[1].toFixed(2);
         text = dateFormat(toDate(x)) + " : $" + y;
