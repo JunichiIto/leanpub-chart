@@ -86,6 +86,9 @@ $(function() {
       } else if (item.seriesIndex == 1) {
         var y = item.datapoint[1].toFixed(2);
         text = dateFormat(toDate(x)) + " : $" + y;
+      } else if (item.seriesIndex == 2) {
+        var y = item.datapoint[1].toFixed(2);
+        text = "$" + y;
       }
       if (text) {
         $("#tooltip").html(text)
