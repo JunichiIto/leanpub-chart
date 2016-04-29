@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require jquery.flot
 //= require jquery.flot.time
+//= require jquery.flot.resize
 //= require_tree .
