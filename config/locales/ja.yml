@@ -1,5 +1,8 @@
 ---
 ja:
+  common:
+    date: '日付'
+    royalties: '収益'
   chart:
     purchase_count: '購入数'
     cum_royalties: '累計額'

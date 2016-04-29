@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  common:
+    date: 'Date'
+    royalties: 'Royalties'
   chart:
     purchase_count: 'Purchase count'
     cum_royalties: 'Cum royalties'

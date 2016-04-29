@@ -13,14 +13,14 @@ h1 Sales sum by date
   table.table.table-bordered
     thead
       tr
-        th Date
-        th.align-right Count
-        th.align-right Royalties
-        th.align-right Cum Royalties
+        th = t('common.date')
+        th.align-right = t('chart.purchase_count')
+        th.align-right = t('common.royalties')
+        th.align-right = t('chart.cum_royalties')
     tbody
       - @sales.each do |sale|
         tr
           td = sale.purchased_on
           td.align-right = sale.purchase_count
-          td.align-right = sale.royalties
-          td.align-right = sale.cum_royalties
+          td.align-right = number_to_currency sale.royalties, locale: 'en'
+          td.align-right = number_to_currency sale.cum_royalties, locale: 'en'
