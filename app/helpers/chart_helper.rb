@@ -7,7 +7,7 @@ module ChartHelper
     current = from
     while current <= to
       data << [current.to_i * 1000, goal]
-      current = current + 1.day
+      current += 1.day
     end
     data
   end
