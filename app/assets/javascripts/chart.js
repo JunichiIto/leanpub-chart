@@ -42,7 +42,7 @@ $(function() {
   }, {
     label: '累計額',
     data: cumRoyalties,
-    lines: {show: true},
+    lines: {show: true, lineWidth: 5},
     points: {show: true}
   }, {
     label: '目標額',
@@ -58,7 +58,7 @@ $(function() {
       tickFormatter: yenFormatter
     }, { min: 0, tickFormatter: countFormatter } ],
     legend: { position: "ne" },
-    colors: ["#eb941f", "#0088ce", "#c60c30"],
+    colors: ["#eb941f", "#55a868", "#c60c30"],
     grid: {
       hoverable: true
     }
