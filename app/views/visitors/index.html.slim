@@ -7,6 +7,9 @@ h1 Sales sum by date
     small
       | Last update
       = l Sale.last.created_at
+
+  #placeholder(data = {goal_data: goal_data, cum_royalties: cum_royalties_data(@sales), purchase_count: purchase_count_data(@sales)})
+
   table.table.table-bordered
     thead
       tr

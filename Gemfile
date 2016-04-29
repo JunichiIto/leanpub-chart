@@ -43,3 +43,4 @@ group :test do
 end
 
 gem 'config'
+gem 'flot-rails', :git => "https://github.com/Kjarrigan/flot-rails.git"
