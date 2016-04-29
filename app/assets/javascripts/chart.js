@@ -9,6 +9,10 @@ $(function() {
     return '$' + v.toFixed(axis.tickDecimals);
   }
 
+  function countFormatter(v, axis) {
+    return v.toFixed(axis.tickDecimals) + '冊';
+  }
+
   function toDate(sec) {
     var d = new Date();
     d.setTime(sec);
@@ -33,7 +37,7 @@ $(function() {
   var data = [{
     label: '購入数',
     data: purchaseCount,
-    bars: {show: true},
+    bars: {show: true, barWidth: 20000000, align: 'center'},
     yaxis: 2
   }, {
     label: '累計額',
@@ -52,14 +56,11 @@ $(function() {
       alignTicksWithAxis: 1,
       position: 'right',
       tickFormatter: yenFormatter
-    }, { min: 0 } ],
+    }, { min: 0, tickFormatter: countFormatter } ],
     legend: { position: "ne" },
     colors: ["#eb941f", "#0088ce", "#c60c30"],
     grid: {
       hoverable: true
-    },
-    series: {
-      bars: { lineWidth: 5 }
     }
   };
 
@@ -76,13 +77,21 @@ $(function() {
 
   $("#placeholder").bind("plothover", function (event, pos, item) {
     if (item) {
-      var x = item.datapoint[0].toFixed(2),
-        y = item.datapoint[1].toFixed(2);
+      var x = item.datapoint[0].toFixed(0);
 
-      var text = dateFormat(toDate(x)) + " : $" + y
-      $("#tooltip").html(text)
-        .css({top: item.pageY+5, left: item.pageX+5})
-        .fadeIn(200);
+      var text = null;
+      if (item.seriesIndex == 0) {
+        var y = item.datapoint[1].toFixed(0);
+        text = dateFormat(toDate(x)) + " : " + y + "冊";
+      } else if (item.seriesIndex == 1) {
+        var y = item.datapoint[1].toFixed(2);
+        text = dateFormat(toDate(x)) + " : $" + y;
+      }
+      if (text) {
+        $("#tooltip").html(text)
+          .css({top: item.pageY+5, left: item.pageX+5})
+          .fadeIn(200);
+      }
     } else {
       $("#tooltip").hide();
     }
