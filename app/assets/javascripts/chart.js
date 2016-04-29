@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   var purchaseCount = $('#placeholder').data().purchaseCount;
 
   var cumRoyalties = $('#placeholder').data().cumRoyalties;
@@ -36,7 +36,7 @@ $(function() {
     }
 
     if (withoutYear) {
-      return  m + '/' + d;
+      return m + '/' + d;
     } else {
       return y + '/' + m + '/' + d;
     }
@@ -59,13 +59,13 @@ $(function() {
   }];
 
   var options = {
-    xaxes: [ { mode: 'time', tickFormatter: dateFormatter } ],
-    yaxes: [ {
+    xaxes: [{mode: 'time', tickFormatter: dateFormatter}],
+    yaxes: [{
       alignTicksWithAxis: 1,
       position: 'right',
       tickFormatter: yenFormatter
-    }, { min: 0, tickFormatter: countFormatter } ],
-    legend: { position: "ne" },
+    }, {min: 0, tickFormatter: countFormatter}],
+    legend: {position: "ne"},
     colors: ["#eb941f", "#55a868", "#c60c30"],
     grid: {
       hoverable: true
@@ -100,7 +100,7 @@ $(function() {
       }
       if (text) {
         $("#tooltip").html(text)
-          .css({top: item.pageY+5, left: item.pageX+5})
+          .css({top: item.pageY + 5, left: item.pageX + 5})
           .fadeIn(200);
       }
     } else {
