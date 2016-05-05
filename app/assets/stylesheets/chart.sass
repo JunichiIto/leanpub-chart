@@ -1,3 +1,16 @@
+@import "bootstrap/variables"
+
 #placeholder
-  height: 300px
   margin-bottom: 30px
+
+@media (max-width: $screen-xs-max)
+  #placeholder
+    height: 200px
+
+@media (min-width: $screen-xs)
+  #placeholder
+    height: 250px
+
+@media (min-width: $screen-md)
+  #placeholder
+    height: 300px
